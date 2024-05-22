@@ -1,0 +1,73 @@
+---
+import "../styles/base.css";
+import "../styles/transitions.css";
+
+import Nav from "../components/Nav.astro";
+import { ViewTransitions } from "astro:transitions";
+import type {
+    TransitionAnimationPair,
+    TransitionDirectionalAnimations,
+} from "astro";
+
+interface Props {
+    fullScreen?: boolean;
+}
+const { fullScreen } = Astro.props;
+
+const anim: TransitionAnimationPair = {
+    new: [
+        {
+            name: "fadeIn",
+            duration: "200ms",
+            fillMode: "both",
+            delay: "400ms",
+        },
+        {
+            name: "slideFromUp",
+            duration: "300ms",
+            fillMode: "both",
+            delay: "550ms",
+        },
+    ],
+    old: [
+        {
+            name: "slideToDown",
+            duration: "300ms",
+            fillMode: "both",
+            delay: "0ms",
+        },
+        {
+            name: "fadeOut",
+            duration: "200ms",
+            fillMode: "both",
+            delay: "250ms",
+        },
+    ],
+};
+const slideAnim: TransitionDirectionalAnimations = {
+    forwards: anim,
+    backwards: anim,
+};
+---
+
+<html lang="en" data-fullscreen={fullScreen}>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+    </head>
+    <body transition:animate="none">
+        <ViewTransitions />
+        <Nav />
+        <main transition:animate={slideAnim}>
+            <slot />
+        </main>
+    </body>
+</html>
+
+<style>
+    html[data-fullScreen] main {
+    }
+</style>

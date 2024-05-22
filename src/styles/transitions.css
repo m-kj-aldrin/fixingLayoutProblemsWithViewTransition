@@ -1,0 +1,37 @@
+@keyframes slideToDown {
+  to {
+    transform: translateY(5px);
+  }
+}
+@keyframes slideFromDown {
+  from {
+    transform: translateY(5px);
+  }
+}
+@keyframes slideToUp {
+  to {
+    transform: translateY(-5px);
+  }
+}
+@keyframes slideFromUp {
+  from {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

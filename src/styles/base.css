@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden scroll;
+
+  margin: 0;
+  padding: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+main {
+  max-width: 720px;
+  width: 100%;
+  padding: 4px;
+
+  align-self: center;
+
+  flex-grow: 1;
+
+  border: 1px currentColor solid;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 4px;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+astro-dev-toolbar {
+  display: none;
+}

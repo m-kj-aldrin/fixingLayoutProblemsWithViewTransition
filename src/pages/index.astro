@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layout/BaseLayout.astro";
+---
+
+<BaseLayout fullScreen={true}>
+    <svg viewBox="-256 -256 512 512">
+        <circle r="256"></circle>
+    </svg>
+</BaseLayout>
+
+<style>
+    .card {
+        border: 1px red solid;
+        padding: 2px;
+    }
+    svg {
+        height: 100%;
+    }
+</style>
