@@ -1,9 +1,10 @@
 ---
 import "../styles/base.css";
 import "../styles/transitions.css";
+import "../styles/typography.css";
 
 import Nav from "../components/Nav.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions, slide } from "astro:transitions";
 import type {
     TransitionAnimationPair,
     TransitionDirectionalAnimations,
@@ -18,29 +19,40 @@ const anim: TransitionAnimationPair = {
     new: [
         {
             name: "fadeIn",
-            duration: "200ms",
+            duration: "100ms",
             fillMode: "both",
-            delay: "400ms",
+            delay: "200ms",
+            easing: "ease",
         },
         {
             name: "slideFromUp",
-            duration: "300ms",
-            fillMode: "both",
-            delay: "550ms",
-        },
-    ],
-    old: [
-        {
-            name: "slideToDown",
-            duration: "300ms",
-            fillMode: "both",
-            delay: "0ms",
-        },
-        {
-            name: "fadeOut",
             duration: "200ms",
             fillMode: "both",
             delay: "250ms",
+            easing: "ease",
+        },
+    ],
+    // new: {
+    //     name: "fadeIn",
+    //     duration: "200ms",
+    //     fillMode: "both",
+    //     delay: "500ms",
+    //     easing: "ease",
+    // },
+    old: [
+        {
+            name: "slideToDown",
+            duration: "200ms",
+            fillMode: "forwards",
+            delay: "0ms",
+            easing: "ease",
+        },
+        {
+            name: "fadeOut",
+            duration: "100ms",
+            fillMode: "both",
+            delay: "150ms",
+            easing: "ease",
         },
     ],
 };
@@ -48,26 +60,32 @@ const slideAnim: TransitionDirectionalAnimations = {
     forwards: anim,
     backwards: anim,
 };
+
+const route = Astro.url.pathname;
+
+// const pageAnimation = route == "/" ? "fade" : slideAnim;
+const pageAnimation = slideAnim;
 ---
 
 <html lang="en" data-fullscreen={fullScreen}>
     <head>
         <meta charset="utf-8" />
+
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+
         <title>Astro</title>
+
+        <ViewTransitions fallback="swap" />
     </head>
     <body transition:animate="none">
-        <ViewTransitions />
-        <Nav />
-        <main transition:animate={slideAnim}>
-            <slot />
-        </main>
+        <div id="viewport-frame">
+            <Nav />
+            <main transition:animate={slideAnim}>
+                <slot />
+            </main>
+        </div>
     </body>
 </html>
-
-<style>
-    html[data-fullScreen] main {
-    }
-</style>
