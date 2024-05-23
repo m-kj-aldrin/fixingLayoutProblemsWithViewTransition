@@ -3,12 +3,29 @@
 ---
 
 <article>
-    <slot />
+    <div class="info">
+        <slot name="info" />
+    </div>
+    <slot name="picture" />
 </article>
 
 <style>
     article {
-        border: 1px currentColor solid;
+        overflow: hidden;
+
         padding: 4px;
+        aspect-ratio: 1/1;
+
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        border: 1px currentColor solid;
+    }
+
+    article :global(img) {
+        flex-grow: 1;
+        min-height: 0;
+        width: 100%;
     }
 </style>

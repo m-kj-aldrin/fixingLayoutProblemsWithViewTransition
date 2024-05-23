@@ -1,7 +1,25 @@
 ---
+import Logo from "./Logo.astro";
 ---
 
 <nav>
-    <a href="/">home</a>
-    <a href="/works">works</a>
+    <Logo />
+    <div class="links">
+        <a href="/">home</a>
+        <a href="/works">works</a>
+    </div>
 </nav>
+
+<style>
+    nav {
+        display: flex;
+
+        border-bottom: 1px currentColor solid;
+        padding-block: 4px;
+        margin-block-end: 16px;
+    }
+
+    .links {
+        margin-inline-start: auto;
+    }
+</style>

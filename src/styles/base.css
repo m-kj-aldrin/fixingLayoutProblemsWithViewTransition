@@ -12,26 +12,39 @@ html {
 }
 
 body {
-  overflow: hidden scroll;
+  position: relative;
 
   margin: 0;
   padding: 4px;
 
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  background-color: #fff;
 }
 
 main {
-  max-width: 720px;
-  width: 100%;
-  padding: 4px;
-
-  align-self: center;
-
   flex-grow: 1;
+}
+html[data-fullscreen] main {
+  overflow: hidden;
+}
 
-  border: 1px currentColor solid;
+#viewport-frame {
+  overflow: hidden scroll;
+  padding: 8px;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 0 6px 0 inset hsl(0 0% 0% / 0.15);
+  border-radius: 8px;
+}
+
+#viewport-frame > nav,
+main {
+  max-width: 976px;
+  width: 100%;
+  margin-inline: auto;
 }
 
 ::-webkit-scrollbar {
@@ -44,14 +57,15 @@ main {
   border-radius: 4px;
 }
 
-img,
-picture,
-video,
-svg {
+:where(img, picture, video, svg) {
   display: block;
   max-width: 100%;
+  object-fit: cover;
 }
 
+#automa-palette {
+  display: none;
+}
 astro-dev-toolbar {
   display: none;
 }
